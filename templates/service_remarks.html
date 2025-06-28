@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A2Z Household Services - Service Remarks</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="page-center">
+        <div class="center-box">
+            <form method="POST">
+                <div class="welcome2">Service Remarks
+                    <div class="welcome3">
+                        Service ID:{{ service_id }}
+                
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col me-2">{{ provider.service_name }}</div>
+                    <div class="col me-2">{{ provider.job_description }}</div>
+                    <div class="col me-2">
+                        {% if provider.request_time %}
+                            {{ provider.request_time.strftime('%d/%m/%Y') }}
+                            <input type="hidden" name="request_time" value="{{ provider.request_time }}">
+                        {% else %}
+                            Date not available
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col me-2">{{ provider.id }}</div>
+                    <div class="col me-2">{{ provider.full_name }}</div>
+                    <div class="col me-2">{{ provider.user_id }}</div>
+                </div>
+                <input type="hidden" name="user_id" value="{{ user_id }}">
+            
+                
+                <div class="mt-3">
+                    <label for="rating">Rating (0-5):</label>
+                    <input type="number" id="rating" name="rating" min="0" max="5" required>
+                </div>
+            
+                
+                <div class="mt-3">
+                    <label for="remarks">Remarks:</label>
+                    <textarea id="remarks" name="remarks" rows="4" cols="50" required></textarea>
+                </div>
+            
+                
+                <button type="submit" class="btn btn-danger mt-3">Close</button>
+            </form>
+            
+        </div>
+    </div>
+</body>
+</html>
